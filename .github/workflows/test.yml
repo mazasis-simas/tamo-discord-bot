@@ -1,0 +1,17 @@
+
+name: TAMO Discord Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord test
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -f -H "Content-Type: application/json" \
+            -d '{"content":"✅ TAMO bot connected to Discord!"}' \
+            "$WEBHOOK"
